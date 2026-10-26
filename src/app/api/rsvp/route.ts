@@ -60,13 +60,16 @@ export async function POST(request: Request) {
     const text = await response.text();
     // The Apps Script template answers {"ok":true}; anything else counts as not saved.
     let saved = response.ok;
+    let reason = "";
     try {
-      const result = JSON.parse(text) as { ok?: boolean };
+      const result = JSON.parse(text) as { ok?: boolean; error?: string };
       if (typeof result.ok === "boolean") saved = response.ok && result.ok;
+      reason = result.error ?? "";
     } catch {
       /* non-JSON 2xx body: trust the status code */
     }
-    if (!saved) throw new Error(`Webhook responded ${response.status}`);
+    // "unauthorized" = RSVP_WEBHOOK_SECRET differs from SECRET in the deployed Apps Script version.
+    if (!saved) throw new Error(`Webhook responded ${response.status}${reason ? `: ${reason}` : ""}`);
   } catch (error) {
     console.error("[rsvp] failed to persist", error);
     return NextResponse.json({ error: "Chưa lưu được phản hồi. Bạn thử lại sau, hoặc nhắn trực tiếp cho mình nhé." }, { status: 502 });
