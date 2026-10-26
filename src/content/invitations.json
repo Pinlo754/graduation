@@ -236,6 +236,89 @@
     "displayName": "Phấn",
     "personalMessage": "Tiktoker dẫn đoàn xún chụp hình chung dới tui nè",
     "rsvpEnabled": true
+  },
+  {
+    "id": "035",
+    "recipientName": "Dũng",
+    "displayName": "MDung",
+    "personalMessage": "Mdung xún chộp hình dới tp nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "036",
+    "recipientName": "MHưng",
+    "displayName": "MHưng",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "037",
+    "recipientName": "Trọng",
+    "displayName": "Trọng",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "038",
+    "recipientName": "Thiên",
+    "displayName": "Thiên",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "039",
+    "recipientName": "Khoa",
+    "displayName": "Khoa",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "040",
+    "recipientName": "Thi Beo",
+    "displayName": "Thi Beo",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "041",
+    "recipientName": "bhuy",
+    "displayName": "bhuy",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "042",
+    "recipientName": "Nguyên",
+    "displayName": "Nguyên",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "043",
+    "recipientName": "Tùng",
+    "displayName": "Tùng",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "044",
+    "recipientName": "Khang",
+    "displayName": "Khang",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "045",
+    "recipientName": "Tân",
+    "displayName": "Tân",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "046",
+    "recipientName": "Hoàng",
+    "displayName": "Hoàng",
+    "personalMessage": "kh có mặt thì quá dở hẹ",
+    "rsvpEnabled": true
   }
-
 ]

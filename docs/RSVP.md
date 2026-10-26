@@ -11,17 +11,32 @@ Luồng dữ liệu: trình duyệt khách → `/api/rsvp` (server Next.js kiể
 
 ```js
 const SECRET = "doi-thanh-chuoi-bi-mat-cua-ban"; // phải trùng RSVP_WEBHOOK_SECRET
+const VERSION = 4; // tăng số này mỗi lần sửa code, để biết bản deploy mới đã chạy chưa
+const HEADERS = ["submittedAt", "id", "recipientName", "status", "note"];
 
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
-    if (data.secret !== SECRET) return json({ ok: false, error: "unauthorized" });
-    const sheet = SpreadsheetApp.getActive().getSheetByName("RSVP");
+    if (String(data.secret).trim() !== SECRET.trim()) {
+      return json({ ok: false, error: "unauthorized", version: VERSION, secretLength: String(data.secret).length });
+    }
+    const sheet = getRsvpSheet();
     sheet.appendRow([data.submittedAt, data.id, data.recipientName, data.status, data.note]);
-    return json({ ok: true });
+    return json({ ok: true, version: VERSION, sheet: sheet.getName() });
   } catch (err) {
-    return json({ ok: false, error: String(err) });
+    return json({ ok: false, error: String(err), version: VERSION });
   }
+}
+
+/** Tab "RSVP" (không phân biệt hoa/thường, bỏ qua dấu cách); chưa có thì tự tạo kèm tiêu đề. */
+function getRsvpSheet() {
+  const ss = SpreadsheetApp.getActive();
+  const found = ss.getSheets().find((s) => s.getName().trim().toLowerCase() === "rsvp");
+  if (found) return found;
+  const sheet = ss.insertSheet("RSVP");
+  sheet.appendRow(HEADERS);
+  sheet.setFrozenRows(1);
+  return sheet;
 }
 
 function json(obj) {
@@ -30,6 +45,8 @@ function json(obj) {
 ```
 
 3. **Deploy → New deployment → Web app**: *Execute as* = **Me**, *Who has access* = **Anyone**. Copy URL dạng `https://script.google.com/macros/s/…/exec`.
+
+> ⚠️ **Sửa code xong phải deploy lại:** Apps Script chỉ chạy *bản đã deploy*, không phải code bạn vừa Save. Vào **Deploy → Manage deployments → ✏️ → Version: New version → Deploy** (URL giữ nguyên). Quên bước này là nguyên nhân phổ biến nhất của lỗi 502 / `unauthorized`.
 
 > Mỗi lần khách đổi câu trả lời sẽ thêm một dòng mới — lấy dòng mới nhất của mỗi `id` là câu trả lời cuối.
 
