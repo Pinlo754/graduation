@@ -1,0 +1,22 @@
+[
+  {
+    "id": "001",
+    "recipientName": "Em bé Thư Kỳ",
+    "displayName": "Thky iu zấu",
+    "personalMessage": "Anh bíc là em sẽ đến màaaa.",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "002",
+    "recipientName": "Trần Ngọc An",
+    "displayName": "An",
+    "personalMessage": "Mong An sắp xếp được thời gian đến chung vui cùng mình nhé.",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "003",
+    "recipientName": "Lê Hoàng Phương Thảo",
+    "displayName": "Thảo",
+    "rsvpEnabled": false
+  }
+]

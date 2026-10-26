@@ -1,0 +1,730 @@
+# MASTER PROMPT — PERSONALIZED FPT UNIVERSITY GRADUATION INVITATION WEBSITE
+
+You are a Senior Full-Stack Engineer, Creative Frontend Developer, UI/UX Designer, and Motion Design Specialist.
+
+Your mission is to inspect, design, implement, and fully complete my personal graduation invitation website. Do not stop at providing suggestions, wireframes, mockups, or code snippets. Work directly in the existing project, implement the complete experience, test it, and fix any issues you discover.
+
+The website should feel like a premium, cinematic, interactive digital graduation invitation created by a Software Engineering student who loves technology, modern design, and creative web experiences.
+
+The result must be visually impressive, emotionally memorable, technically reliable, and easy for me to customize.
+
+---
+
+## 1. PROJECT OVERVIEW
+
+Build a personalized digital graduation invitation website for me, a Software Engineering student at FPT University, Vietnam.
+
+The website will be shared with friends and guests through unique URLs. Each URL corresponds to a specific invitation record and recipient ID.
+
+For example:
+
+- `/invite/001`
+- `/invite/002`
+- `/invite/003`
+
+Each invitation should display the recipient's name and personalized greeting based on the invitation ID.
+
+Example:
+
+`https://your-domain.com/invite/001`
+
+This URL might display:
+
+"Dear Minh,"
+
+while another URL displays:
+
+"Dear An,"
+
+The recipient must not need to create an account or log in to view their invitation.
+
+The project must clearly communicate these themes:
+
+- Graduation and a major life milestone.
+- Information Technology and Software Engineering.
+- FPT University.
+- Personal achievement, friendship, gratitude, and celebration.
+- A premium, futuristic, interactive digital invitation experience.
+
+The website should not look like a generic wedding invitation template or a generic corporate landing page.
+
+It should feel like a carefully crafted digital experience made by a software engineer.
+
+## 2. FIRST TASK: AUDIT THE EXISTING PROJECT
+
+Before changing anything:
+
+1. Inspect the entire existing project structure.
+2. Identify the framework, programming language, package manager, styling system, routing system, and current dependencies.
+3. Review the existing pages, components, assets, configuration files, and environment variables.
+4. Identify incomplete features, errors, and opportunities for improvement.
+5. Determine the simplest maintainable architecture for the requested functionality.
+6. Preserve working functionality and reuse existing components where appropriate.
+
+Do not replace the entire project with a new scaffold unless the existing project genuinely requires it.
+
+Do not ask me to manually implement code that you can implement yourself.
+
+After the audit, proceed directly with implementation. Only ask me a question if a missing decision genuinely blocks implementation.
+
+If personal information, graduation details, photos, or music files are unavailable, create a clearly marked configuration or placeholder that I can replace later. Never invent my actual personal information.
+
+## 3. DESIGN DIRECTION
+
+Create a distinctive visual identity combining:
+
+- Premium graduation aesthetics.
+- Futuristic technology.
+- Cinematic storytelling.
+- Elegant typography.
+- Subtle glassmorphism.
+- Metallic accents and luminous particles.
+- Sophisticated motion design.
+
+### Suggested visual palette
+
+Use these as starting points, adapting them to achieve the best visual result:
+
+- Midnight navy: `#080B18`
+- Deep indigo: `#15112B`
+- Electric orange: `#F36B3F`
+- Warm gold: `#F4D58D`
+- Soft ivory: `#FFF7E8`
+- White highlights: `#FFFFFF`
+
+You may incorporate FPT-inspired orange accents, but do not use FPT University logos or official branding assets without appropriate authorization.
+
+The page should have strong contrast, beautiful depth, polished spacing, and intentional composition.
+
+Avoid excessive neon effects, excessive blur, cheap-looking gradients, cluttered layouts, and animations that distract from the invitation itself.
+
+The overall visual experience should be premium, modern, warm, and personal.
+
+## 4. THE HERO EXPERIENCE: OPEN THE INVITATION
+
+The first screen should immediately feel like receiving a special digital invitation.
+
+Create a full-screen opening experience with a centered, beautifully designed digital envelope or invitation card.
+
+Possible visual elements:
+
+- A sealed invitation envelope.
+- A personalized recipient name.
+- A subtle graduation seal or abstract technological emblem.
+- Golden sparkles around the invitation.
+- Floating decorative elements.
+- Soft ambient lighting.
+- A subtle animated background.
+- A clear "Open Your Invitation" interaction.
+
+The invitation should initially be closed.
+
+When the visitor clicks or taps the invitation:
+
+1. Play an opening animation.
+2. Animate the envelope flap or card opening using smooth transforms and layered elements.
+3. Reveal the invitation contents through a cinematic transition.
+4. Trigger a tasteful burst of sparkles or glowing particles.
+5. Transition naturally into the main invitation page.
+6. Start background music if the browser permits playback.
+7. Reveal the personalized greeting.
+
+The animation should feel intentional, smooth, and satisfying.
+
+Use CSS transforms, opacity, perspective, and carefully coordinated transitions where appropriate.
+
+Avoid unnecessarily expensive animations or animations that make the page feel slow.
+
+The opening experience must work on both desktop and mobile devices.
+
+Support keyboard interaction, accessible focus states, and reduced-motion preferences.
+
+If a full envelope-opening animation is impractical with the existing stack, create an equally polished layered invitation-card reveal rather than a basic fade-in.
+
+## 5. PERSONALIZED INVITATION SYSTEM
+
+This is a core requirement, not an optional feature.
+
+Each invitation must be associated with a unique ID and recipient.
+
+Example invitation data:
+
+- ID: `001`
+- Recipient name: `Minh Nguyen`
+- Display name: `Minh`
+- Greeting: `Dear Minh`
+- Optional personal message.
+- Optional RSVP status.
+
+Use a clean data structure that makes it easy to manage invitation recipients.
+
+If the existing project has a database, evaluate whether it should be reused. Otherwise, implement the simplest suitable solution.
+
+For a small, mostly static invitation list, a centralized TypeScript data file or JSON dataset is acceptable. Do not introduce a database or backend unless there is a clear benefit.
+
+Requirements:
+
+1. Each valid invitation ID resolves to the correct recipient.
+2. The visitor sees their personalized name in the hero and invitation content.
+3. The invitation URL remains shareable and works when opened directly.
+4. Refreshing a personalized invitation must not break routing.
+5. Unknown IDs must display a polished, friendly "Invitation not found" page.
+6. Never silently display another recipient's invitation when an ID is invalid.
+7. Keep invitation content separate from presentation components.
+8. Handle names containing Vietnamese diacritics and other Unicode characters correctly.
+9. Prevent recipient names from being interpreted as HTML or executable content.
+10. Do not expose private information beyond the content intended to be shared with that recipient.
+
+Provide an easy way for me to add, edit, and remove recipients without manually changing multiple components.
+
+If appropriate, support a CSV import or export workflow, but only implement it if it can be done cleanly without unnecessary complexity.
+
+### Example invitation dataset
+
+Use placeholder data that I can replace:
+
+```ts
+export interface Invitation {
+  id: string;
+  recipientName: string;
+  displayName?: string;
+  personalMessage?: string;
+  rsvpEnabled?: boolean;
+}
+
+export const invitations: Invitation[] = [
+  {
+    id: "001",
+    recipientName: "Nguyen Van Minh",
+    displayName: "Minh",
+    personalMessage: "It would mean a lot to celebrate this milestone with you.",
+    rsvpEnabled: true
+  },
+  {
+    id: "002",
+    recipientName: "Tran Ngoc An",
+    displayName: "An",
+    personalMessage: "I hope you can join me for this special day.",
+    rsvpEnabled: true
+  }
+];
+```
+
+Adapt the implementation to the existing framework and architecture.
+
+### Optional RSVP functionality
+
+If feasible, provide a simple RSVP interaction that allows a guest to respond:
+
+- I will attend.
+- I cannot attend.
+- I am not sure yet.
+
+If an RSVP is implemented, persist the response using a suitable storage mechanism. Do not rely on browser local storage if I need to see responses across different devices.
+
+If the project has no backend, either implement a suitable lightweight backend or leave RSVP disabled with clear instructions for enabling it later.
+
+Never pretend an RSVP was successfully submitted if it was not actually persisted.
+
+## 6. MAIN INVITATION PAGE
+
+After the visitor opens the invitation, reveal a beautifully structured, scroll-driven experience.
+
+Organize the page into meaningful sections.
+
+### Section A: Personalized welcome
+
+Display:
+
+"You're Invited, [Recipient Name]!"
+
+Follow with a short, heartfelt message explaining that I would love for them to join me in celebrating my graduation.
+
+Use beautiful typography, elegant motion, and a visually prominent invitation title.
+
+### Section B: My graduation story
+
+Introduce my educational milestone.
+
+The page must clearly communicate:
+
+- University: FPT University.
+- Field: Information Technology.
+- Major: Software Engineering.
+- Achievement: Graduation.
+
+Use editable content for the exact graduation date, campus, ceremony location, and any other details that have not yet been provided.
+
+Do not invent the official graduation date, degree classification, venue, or ceremony schedule.
+
+Design this section so the university, major, and achievement are immediately recognizable.
+
+### Section C: Graduation details
+
+Create an elegant event-information layout containing:
+
+- Event title.
+- Date.
+- Day of the week, calculated from the configured date.
+- Start time and optional end time.
+- Venue.
+- Full address.
+- Optional dress code.
+- Optional Google Maps link.
+- Optional calendar-add link.
+
+All event details must come from a centralized configuration.
+
+Hide fields that are not configured instead of displaying empty labels or fake data.
+
+Format the date and time appropriately for Vietnam, using `Asia/Ho_Chi_Minh` where applicable.
+
+### Section D: My photos and memories
+
+Create an attractive photo gallery where I can easily add my own photographs.
+
+Potential content:
+
+- Graduation portraits.
+- University memories.
+- Friends and classmates.
+- Campus photographs.
+- Personal milestones.
+- Behind-the-scenes moments.
+
+Requirements:
+
+1. Use local assets or a clearly documented asset directory.
+2. Make it easy to add or replace images.
+3. Support descriptive captions and optional dates.
+4. Provide an attractive gallery layout with varied image proportions.
+5. Add smooth entrance animations as images enter the viewport.
+6. Use tasteful hover effects on desktop.
+7. Support image lightbox viewing, with keyboard and touch interaction where appropriate.
+8. Optimize images for performance.
+9. Provide sensible aspect ratios and fallback handling.
+10. Never generate fake photographs of me or claim placeholder images are actual memories.
+
+If there are no photographs yet, show attractive, clearly replaceable placeholders or a designed gallery-empty state.
+
+### Section E: A personal message
+
+Include an editable message expressing gratitude to friends who have been part of my journey.
+
+The tone should be sincere, warm, and personal rather than overly formal or corporate.
+
+Keep the copy in a centralized content configuration so I can easily rewrite it.
+
+### Section F: Final invitation and RSVP
+
+End with a memorable invitation and a clear next action.
+
+Possible copy:
+
+"I've reached this milestone, and I'd love to celebrate it with you."
+
+Include the configured event details and an RSVP interaction if enabled.
+
+The final section should feel like the conclusion of a cinematic story.
+
+## 7. SCROLL-TRIGGERED ANIMATIONS
+
+The website must reveal information progressively as visitors scroll down.
+
+Use a consistent motion system rather than random animations on every element.
+
+Implement:
+
+- Fade-in and upward movement for section headings.
+- Staggered reveals for event details.
+- Smooth image reveals for gallery items.
+- Gentle scale and opacity transitions.
+- Floating decorative elements in selected sections.
+- Subtle parallax or background depth where appropriate.
+- Animated timeline or progress indicators if they improve the design.
+- Smooth transitions between major sections.
+
+Use `IntersectionObserver`, an existing animation library, or an appropriate framework-native solution.
+
+Requirements:
+
+1. Animations should trigger when sections enter the viewport.
+2. Content should not remain invisible if JavaScript fails or animations are disabled.
+3. Repeated scrolling should not cause distracting replays.
+4. Respect `prefers-reduced-motion`.
+5. Avoid heavy scroll handlers that execute excessively.
+6. Avoid layout shifts caused by animated content.
+7. Do not make the visitor wait for every animation before accessing information.
+
+Use animation timing, easing, and stagger delays consistently.
+
+## 8. SPARKLES, BLING, AND FLOATING OBJECTS
+
+Create a signature visual effect featuring elegant sparkles and floating decorative objects.
+
+Possible elements:
+
+- Golden glitter particles.
+- Tiny twinkling stars.
+- Soft glowing dots.
+- Abstract software-inspired symbols.
+- Small graduation caps.
+- Floating geometric shapes.
+- Subtle lines resembling digital connections.
+- Decorative orbs and luminous accents.
+
+Requirements:
+
+- Particles should appear especially around the opening invitation and hero section.
+- Some decorative elements may float gently in the background while the visitor scrolls.
+- Sparkles should twinkle with varying durations and delays.
+- Effects must remain subtle enough to preserve readability.
+- Decorative layers must not block buttons, links, scrolling, or text selection.
+- Use `pointer-events: none` for purely decorative overlays.
+- Limit the number of animated particles, especially on mobile.
+- Clean up observers, event listeners, and animation resources appropriately.
+- Disable or simplify expensive effects when reduced motion is enabled.
+
+Prefer lightweight CSS animations and small reusable components.
+
+Use a canvas-based particle system only if it offers a meaningful improvement and can be implemented efficiently.
+
+## 9. BACKGROUND MUSIC
+
+Background music is an important part of the experience.
+
+The intended behavior is for music to begin as soon as the visitor enters the website and, if necessary, after they interact with the invitation.
+
+However, modern browsers often block autoplay with sound.
+
+Implement this correctly rather than attempting to bypass browser restrictions.
+
+Requirements:
+
+1. Provide a configurable local music asset, such as `/audio/background-music.mp3`.
+2. Attempt autoplay only where browser policies allow it.
+3. If autoplay is blocked, provide an attractive "Enable Music" or "Play Music" control.
+4. Ideally, connect the first invitation-opening click to music playback.
+5. Provide a persistent music toggle accessible throughout the experience.
+6. Include a clear play/pause state.
+7. Animate the music control subtly when music is playing.
+8. Start with a reasonable volume level.
+9. Handle missing audio files and playback errors gracefully.
+10. Do not repeatedly restart music when changing sections or triggering animations.
+11. Avoid surprising users with loud audio.
+12. Respect user preferences and do not force playback after the user pauses it.
+
+Music should enhance the atmosphere without overpowering the content.
+
+Keep the music asset configurable so I can replace it with a song of my choice.
+
+## 10. SOFTWARE ENGINEERING VISUAL IDENTITY
+
+The design must make it clear that I studied Information Technology and majored in Software Engineering at FPT University.
+
+Integrate these themes elegantly into the visual language.
+
+Possible ideas:
+
+- Terminal-inspired microcopy.
+- A subtle code-editor-inspired panel.
+- Monospaced typography for metadata.
+- A timeline resembling a development journey.
+- Abstract code fragments or syntax-highlighted decorative text.
+- A graduation milestone presented as a completed project.
+- A subtle digital grid or circuit-like background.
+- A version-control or commit-history-inspired timeline representing personal growth.
+- A carefully designed "Build completed" or "Milestone achieved" visual metaphor.
+
+Example conceptual details:
+
+`EDUCATION: FPT UNIVERSITY`
+
+`FIELD: INFORMATION TECHNOLOGY`
+
+`MAJOR: SOFTWARE ENGINEERING`
+
+`STATUS: GRADUATION`
+
+These should feel like design details, not a literal developer dashboard.
+
+Do not overuse terminal windows, code blocks, or hacker-style green text.
+
+The site must still feel like an elegant graduation invitation.
+
+## 11. RESPONSIVE DESIGN
+
+The experience must be excellent on:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Mobile phones.
+
+Mobile is particularly important because guests will usually open invitation links from messaging apps.
+
+Requirements:
+
+- Design mobile layouts intentionally rather than merely shrinking the desktop layout.
+- Ensure the envelope and opening interaction work with touch.
+- Avoid horizontal overflow.
+- Keep typography readable.
+- Make controls easy to tap.
+- Keep important event information easy to find.
+- Reduce particle counts and animation complexity on lower-powered devices.
+- Ensure the music control does not overlap important content.
+- Use responsive images and appropriate aspect ratios.
+- Test both narrow and wide viewports.
+
+## 12. ACCESSIBILITY AND USER EXPERIENCE
+
+Implement:
+
+- Semantic HTML.
+- Accessible buttons and form controls.
+- Keyboard navigation.
+- Visible focus states.
+- Meaningful image alternative text.
+- Adequate color contrast.
+- Proper heading hierarchy.
+- Reduced-motion support.
+- Clear validation and error messages.
+- Appropriate loading and empty states.
+
+Do not make the core invitation content dependent on animation.
+
+Visitors must still be able to read the invitation if motion effects are disabled.
+
+## 13. PERFORMANCE AND TECHNICAL QUALITY
+
+The website must be production-oriented, not just visually attractive.
+
+Requirements:
+
+- Follow the existing framework's conventions.
+- Use TypeScript if the project already supports it or can adopt it cleanly.
+- Keep components focused and reusable.
+- Separate invitation data, event configuration, visual components, and application logic.
+- Avoid unnecessary dependencies.
+- Lazy-load gallery images when appropriate.
+- Use optimized image formats when practical.
+- Prevent avoidable re-renders.
+- Clean up timers, observers, and event listeners.
+- Handle missing assets and invalid URLs.
+- Avoid hydration errors if using a server-rendered framework.
+- Avoid layout shifts and animation-related performance issues.
+- Keep secrets out of frontend source code.
+- Ensure production builds succeed.
+
+Do not introduce a complex backend, CMS, database, authentication system, or administrative dashboard unless the existing project or a clearly required feature justifies it.
+
+## 14. CONTENT AND CONFIGURATION MANAGEMENT
+
+Create a single, well-documented place where I can edit the website's content.
+
+The configuration should cover:
+
+- My name.
+- My preferred display name.
+- University.
+- Field of study.
+- Major.
+- Graduation title.
+- Graduation date.
+- Ceremony time.
+- Venue.
+- Address.
+- Dress code.
+- Personal message.
+- Background music path.
+- Hero title and subtitle.
+- Gallery images and captions.
+- RSVP settings.
+- Social links, if any.
+- Optional Google Maps and calendar links.
+
+Use meaningful TypeScript types and sensible defaults.
+
+Clearly document which values I must replace before publishing the website.
+
+Do not scatter hardcoded graduation details across multiple files.
+
+Invitation recipient records should be maintained separately from global event configuration.
+
+## 15. SECURITY AND PRIVACY
+
+Although this is a personal invitation website, maintain sensible security practices.
+
+- Validate invitation IDs.
+- Escape and safely render user-provided content.
+- Avoid rendering raw HTML from invitation data.
+- Do not expose secrets or private environment variables.
+- Do not add unnecessary tracking scripts.
+- Avoid collecting personal information that is not needed.
+- If RSVP data is persisted, use appropriate validation and access controls.
+- Do not assume an unguessable invitation ID provides strong privacy.
+- If recipient confidentiality is important, explain that a public URL and frontend invitation dataset are not sufficient to protect sensitive information.
+
+The default invitation should reveal only the information intended for the recipient.
+
+## 16. SEO AND LINK SHARING
+
+Ensure that invitation URLs can be shared cleanly through messaging applications.
+
+Implement appropriate:
+
+- Page titles.
+- Descriptions.
+- Favicon.
+- Theme color.
+- Open Graph metadata where supported.
+- Social sharing preview image where configured.
+
+Personalized page titles should use the recipient's display name when appropriate.
+
+Do not expose all recipient information through global metadata.
+
+If the framework requires server-rendered metadata for personalized social previews, explain the limitation of client-only routing and implement a suitable solution if the existing architecture supports it.
+
+Provide a simple, polished fallback when an invitation URL is invalid.
+
+## 17. FINAL DESIGN QUALITY BAR
+
+The final website must not look like a default template.
+
+Pay special attention to:
+
+- Typography pairing.
+- Visual hierarchy.
+- Consistent spacing.
+- Strong composition.
+- Depth and layering.
+- Elegant color transitions.
+- Cinematic invitation opening.
+- Carefully timed animations.
+- Personal storytelling.
+- Beautiful mobile layouts.
+- Smooth transitions between sections.
+- Small interactions that make the experience memorable.
+
+Every visual effect should have a purpose.
+
+Prioritize the following implementation order:
+
+1. Complete invitation routing and personalized recipient data.
+2. Create a beautiful, polished invitation-opening experience.
+3. Implement the main graduation page and event details.
+4. Implement the photo gallery.
+5. Implement background music and persistent controls.
+6. Add scroll-triggered animations, sparkles, and floating elements.
+7. Complete responsive design, accessibility, and performance optimization.
+8. Test the entire experience and fix discovered issues.
+
+Do not sacrifice the core invitation functionality for decorative effects.
+
+## 18. TESTING AND ACCEPTANCE CRITERIA
+
+Before declaring the project complete, verify the following.
+
+### Routing and personalization
+
+- `/invite/001` displays the correct recipient.
+- `/invite/002` displays a different recipient.
+- Invalid invitation IDs show a friendly not-found state.
+- Direct URL navigation works.
+- Page refresh works.
+- Vietnamese names display correctly.
+- Missing recipient data does not crash the application.
+
+### Invitation interaction
+
+- The initial envelope or card appears correctly.
+- Opening the invitation triggers the expected animation.
+- The invitation content is revealed correctly.
+- Repeated clicks do not break the animation.
+- The interaction works on desktop and mobile.
+- Keyboard access is supported.
+
+### Music
+
+- The music file path is configurable.
+- Autoplay failure is handled gracefully.
+- Music can be started, paused, and resumed.
+- The control reflects the correct playback state.
+- Missing music files do not break the website.
+
+### Main content
+
+- All configured graduation details display correctly.
+- Missing details are handled cleanly.
+- Gallery images load correctly.
+- The gallery supports viewing photographs.
+- Scroll-triggered animations work as intended.
+- Decorative effects do not block interaction.
+- Reduced-motion mode remains usable.
+
+### Responsive behavior
+
+- No unintended horizontal scrolling.
+- Text remains readable.
+- The invitation remains visually balanced.
+- Buttons are accessible.
+- The gallery adapts to viewport size.
+
+### Technical verification
+
+- Run the existing lint and type-check commands where available.
+- Run the project's automated tests.
+- Run a production build.
+- Fix all errors introduced by your changes.
+- Verify direct navigation to invitation routes.
+- Test representative desktop and mobile screen sizes using available tools.
+
+If browser automation is already available, use it to verify the major interactions. Do not claim a test passed unless it was actually executed.
+
+If something cannot be verified in the current environment, state that limitation clearly.
+
+## 19. DELIVERABLES
+
+Complete the implementation and provide:
+
+1. The finished website implemented in the existing project.
+2. A concise summary of the design and features implemented.
+3. A list of the main files created or modified.
+4. Instructions for adding and editing invitation recipients.
+5. Instructions for adding my photographs.
+6. Instructions for replacing the background music.
+7. Instructions for configuring graduation details.
+8. Instructions for running the project locally.
+9. Instructions for building and deploying the website.
+10. Any remaining manual steps or limitations.
+11. A summary of actual test results.
+
+If the project is already deployable, preserve the existing deployment workflow.
+
+Do not deploy to production, purchase services, or perform irreversible external actions without authorization.
+
+## 20. EXECUTION INSTRUCTIONS
+
+Start by auditing the existing project.
+
+Then implement the complete experience directly in the codebase.
+
+Make reasonable design decisions independently and maintain a cohesive visual identity.
+
+Do not stop after producing a plan.
+
+Do not give me only a tutorial explaining how to build the website.
+
+Do not replace the project with a static mockup that looks good but lacks working functionality.
+
+Do not leave the main interactions as TODO comments.
+
+Use realistic placeholder content where information is missing, but clearly identify it as placeholder content.
+
+Run the available checks, fix issues, and report the actual results.
+
+Your ultimate goal is to deliver a complete, personalized, cinematic graduation invitation website that makes my friends feel genuinely excited to attend my graduation.
+
+Begin with the project audit, then proceed with implementation.
+
