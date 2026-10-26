@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildIcs, googleCalendarUrl, toUtcStamp } from "./calendar";
+import { googleCalendarUrl, toUtcStamp } from "./calendar";
 import { getCountdown, getEventDateParts } from "./datetime";
 import { mapsHref } from "./maps";
 import { parseRsvpPayload } from "./rsvp";
@@ -43,13 +43,6 @@ describe("calendar links", () => {
     const url = new URL(googleCalendarUrl(event));
     expect(url.searchParams.get("dates")).toBe("20261220T010000Z/20261220T043000Z");
     expect(url.searchParams.get("text")).toBe("Lễ Tốt Nghiệp");
-  });
-
-  it("builds an escaped .ics file", () => {
-    const ics = buildIcs(event, "uid-1", new Date("2026-01-01T00:00:00Z"));
-    expect(ics).toContain("DTSTART:20261220T010000Z");
-    expect(ics).toContain("LOCATION:Hà Nội\\, Việt Nam");
-    expect(ics.split("\r\n")[0]).toBe("BEGIN:VCALENDAR");
   });
 });
 

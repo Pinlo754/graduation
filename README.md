@@ -1,6 +1,6 @@
 # 🎓 Thiệp mời tốt nghiệp — FPT University · Software Engineering
 
-Thiệp mời online cá nhân hoá: mỗi khách có một link riêng (`/invite/001`, `/invite/002`, …), mở ra là phong bì có sáp niêm phong, bấm vào thì thiệp bay lên, sparkle bung ra, nhạc nền bật, rồi dẫn vào trang thiệp mang chất IT (code editor, git log, vé sự kiện, đếm ngược “deploy in…”).
+Thiệp mời online cá nhân hoá: mỗi khách có một link riêng theo tên (`/invite/em-be-thu-ky`, `/invite/dat-toi`, …), mở ra là phong bì có sáp niêm phong, bấm vào thì thiệp bay lên, sparkle bung ra, nhạc nền bật, rồi dẫn vào trang thiệp mang chất IT (code editor, git log, vé sự kiện, đếm ngược “deploy in…”).
 
 **Stack:** Next.js 15 (App Router) · React 19 · TypeScript · CSS thuần (không thêm thư viện UI/animation). Mọi trang khách mời được build sẵn thành HTML tĩnh (SSG).
 
@@ -54,13 +54,14 @@ File duy nhất: **`src/content/invitations.json`**
 
 | Trường | Bắt buộc | Ghi chú |
 |---|---|---|
-| `id` | ✔ | Chỉ chữ, số, `-`, `_` (tối đa 40 ký tự). Thành URL `/invite/<id>`. Không được trùng. |
-| `recipientName` | ✔ | Tên đầy đủ, có dấu thoải mái. Hiện trên phong bì và vé. |
+| `id` | ✔ | Mã nội bộ: chữ, số, `-`, `_`. Hiện trên vé (“No. 001”) và trong bảng RSVP. Không được trùng. |
+| `recipientName` | ✔ | Tên đầy đủ, có dấu thoải mái. Hiện trên phong bì và vé, **và tạo ra URL**: “Đạt Tới” → `/invite/dat-toi`. |
+| `slug` | | Tự đặt URL khác, ví dụ `"slug": "thky"` → `/invite/thky` (chữ thường không dấu, số, `-`). Bắt buộc khi hai người trùng tên. |
 | `displayName` | | Tên gọi thân mật trong lời chào. Bỏ trống → lấy chữ cuối của tên. |
 | `personalMessage` | | Lời nhắn riêng cho người đó. |
 | `rsvpEnabled` | | `true` để người này xác nhận tham dự online. |
 
-Dữ liệu được kiểm tra lúc build: thiếu tên, trùng id hay id sai định dạng sẽ làm **build báo lỗi** chứ không lặng lẽ deploy thiệp hỏng. ID không tồn tại → trang “Không tìm thấy thiệp mời” (404), không bao giờ hiện nhầm thiệp người khác.
+Dữ liệu được kiểm tra lúc build: thiếu tên, trùng id, **hai người ra cùng một URL** (vd. “Minh” và “Mính”) hay slug sai định dạng sẽ làm **build báo lỗi** chứ không lặng lẽ deploy thiệp hỏng. Link cũ dạng `/invite/001` tự chuyển hướng sang link theo tên. Tên không tồn tại → trang “Không tìm thấy thiệp mời” (404), không bao giờ hiện nhầm thiệp người khác.
 
 **Dùng Excel / Google Sheets:**
 
@@ -70,7 +71,7 @@ npm run guests:import -- guests.csv   # nhập CSV, GHI ĐÈ invitations.json
 npm run guests:links                  # in link của từng khách để copy gửi đi
 ```
 
-Cột CSV: `id, recipientName, displayName, personalMessage, rsvpEnabled`.
+Cột CSV: `id, recipientName, displayName, personalMessage, rsvpEnabled, slug` (`slug` để trống = tự tạo từ tên).
 
 ---
 
@@ -111,7 +112,7 @@ endsAt:   "2026-12-20T11:30:00+07:00",   // tuỳ chọn
 venue, address, dressCode, mapsUrl, note // tuỳ chọn — để undefined là tự ẩn
 ```
 
-Thứ trong tuần, định dạng ngày, đếm ngược, link Google Calendar và file `.ics` đều được tính tự động theo giờ Việt Nam (`Asia/Ho_Chi_Minh`). Không có `mapsUrl` thì nút Maps tự tìm theo `venue + address`.
+Thứ trong tuần, định dạng ngày, đếm ngược và link Google Calendar đều được tính tự động theo giờ Việt Nam (`Asia/Ho_Chi_Minh`). Không có `mapsUrl` thì nút Maps tự tìm theo `venue + address`.
 
 ---
 
@@ -129,7 +130,7 @@ Hoặc tự host: `npm run build && npm start` (Node 18.18+).
 
 ## 🔒 Quyền riêng tư — nên biết
 
-- Link `/invite/001` **không phải mật khẩu**. Ai đoán được ID cũng xem được thiệp đó, và danh sách khách nằm trong source của server. Đừng đưa thông tin nhạy cảm (SĐT, địa chỉ nhà riêng của khách) vào thiệp. Muốn khó đoán hơn, dùng ID ngẫu nhiên như `"minh-7f3k"`.
+- Link theo tên như `/invite/tho` **rất dễ đoán** — ai biết tên bạn bè của bạn cũng mở được thiệp của họ (link `/invite/001` cũ cũng vậy). Danh sách khách nằm trong source của server. Đừng đưa thông tin nhạy cảm vào lời nhắn. Muốn khó đoán hơn, đặt `slug` có thêm hậu tố ngẫu nhiên như `"tho-7f3k"`.
 - Mỗi trang chỉ gửi xuống trình duyệt dữ liệu của đúng khách đó. Trang có `noindex` để không lên Google. Không có tracking.
 - Tên khách luôn được hiển thị dưới dạng văn bản (React tự escape), không bao giờ chạy như HTML.
 - Ảnh xem trước khi share link (Open Graph) là ảnh chung, không chứa tên khách; tiêu đề tab và tiêu đề preview thì có tên người đó (“Minh ơi, bạn được mời!”).
@@ -143,7 +144,7 @@ src/
   config/site.ts              ← TOÀN BỘ nội dung & thông tin buổi lễ
   content/invitations.json    ← danh sách khách mời
   app/
-    invite/[id]/page.tsx      ← trang thiệp (SSG, metadata cá nhân hoá)
+    invite/[slug]/page.tsx    ← trang thiệp theo tên (SSG, metadata cá nhân hoá)
     api/rsvp/route.ts         ← nhận RSVP, chuyển tiếp tới webhook
     page.tsx / not-found.tsx  ← trang chủ & 404
     globals.css               ← design system + toàn bộ style/animation

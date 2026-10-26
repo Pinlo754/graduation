@@ -85,7 +85,6 @@ export function DetailsSection({ guest, config }: { guest: Guest; config: SiteCo
                 location: [event.venue, event.address].filter(Boolean).join(", ") || undefined,
                 details: `Lễ tốt nghiệp của ${config.graduate.fullName}.`,
               }}
-              uid={`graduation-${guest.id}@invite`}
             />
           )}
         </div>

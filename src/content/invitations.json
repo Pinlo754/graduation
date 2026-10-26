@@ -8,15 +8,234 @@
   },
   {
     "id": "002",
-    "recipientName": "Trần Ngọc An",
-    "displayName": "An",
-    "personalMessage": "Mong An sắp xếp được thời gian đến chung vui cùng mình nhé.",
+    "recipientName": "Thọ",
+    "displayName": "Thọ",
+    "personalMessage": "Ở chung 3 năm lên chụp tấm hình :))).",
     "rsvpEnabled": true
   },
   {
     "id": "003",
-    "recipientName": "Lê Hoàng Phương Thảo",
-    "displayName": "Thảo",
-    "rsvpEnabled": false
+    "recipientName": "Định",
+    "displayName": "Định",
+    "personalMessage": "Nhớ ghé chụp hình dới t ^^.",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "004",
+    "recipientName": "Thi",
+    "displayName": "Thi",
+    "personalMessage": "Bạn kh đi là bạn quá dở!",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "005",
+    "recipientName": "NQuynh",
+    "displayName": "NQuynh",
+    "personalMessage": "Bạn kh đi là bạn quá dở!",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "006",
+    "recipientName": "MTTrang",
+    "displayName": "MTTrang",
+    "personalMessage": "Hehe tui mới gặp bạn có 1 lần à, nhưng tui mong bạn sẽ đến^^",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "007",
+    "recipientName": "Đạt Tới",
+    "displayName": "Đạt Tới",
+    "personalMessage": "Tới con sắp xếp được thì qua chụp dới t tấm hình nghe!",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "008",
+    "recipientName": "Bảo Ngọc",
+    "displayName": "Bảo Ngọc",
+    "personalMessage": "BNgoc từng hứa đem bó hoa tới trong lễ tn của t đó",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "009",
+    "recipientName": "Na",
+    "displayName": "Na",
+    "personalMessage": "Hehe Na có rảnh thì ghé chụp dới tp mụt tấm nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "010",
+    "recipientName": "BThi",
+    "displayName": "BThi",
+    "personalMessage": "Biết là BThi sẽ kh ghé được đâu nma sao TP kh mời được hehehehehe",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "011",
+    "recipientName": "Nhan",
+    "displayName": "Nhan",
+    "personalMessage": "Tui nhớ Nhan từng hứa gì với tuoi đó!!!",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "012",
+    "recipientName": "Trí",
+    "displayName": "Trí",
+    "personalMessage": "Bữa đó chộp 1 tấm công ty ae mình nha khầy",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "013",
+    "recipientName": "Mai",
+    "displayName": "Mai",
+    "personalMessage": "Hehe có cơ hội thì chộp 1 tấm nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "014",
+    "recipientName": "Tường",
+    "displayName": "Tường",
+    "personalMessage": "Đại ca nhớ dô cty lớn xong dắt e theo nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "015",
+    "recipientName": "Thoại",
+    "displayName": "Thoại",
+    "personalMessage": "Cu e có cơ hội thì qua chụp chung 1 tấm nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "016",
+    "recipientName": "Trâm",
+    "displayName": "Trâm",
+    "personalMessage": "Kh đi làm chó dmm",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "017",
+    "recipientName": "Diễm",
+    "displayName": "Diễm",
+    "personalMessage": "Kh đi làm chó dmm",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "018",
+    "recipientName": "Duyên",
+    "displayName": "Duyên",
+    "personalMessage": "Hehe c Duyen xún đây chộp chung 1 tấm là dui ời",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "019",
+    "recipientName": "Thái",
+    "displayName": "Thái",
+    "personalMessage": "Hehe a Thái xún đây chộp chung 1 tấm là dui ời",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "020",
+    "recipientName": "HÁnh",
+    "displayName": "HÁnh",
+    "personalMessage": "Hehe c Ánh có gảnh thì vìa trường chụp dới em 1 tấm nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "021",
+    "recipientName": "MNguyet",
+    "displayName": "MNguyet",
+    "personalMessage": "con chó MN hẹn thì nhiều chớ kh thấy mặt, được thì ghé chụp dới tui 1 tấm ^^",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "022",
+    "recipientName": "Khiêm",
+    "displayName": "Khiêm",
+    "personalMessage": "Hôm đó có cơ hội thì qua chụp chung 1 tấm nha ng ae ^^",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "023",
+    "recipientName": "Nghĩa",
+    "displayName": "Nghĩa",
+    "personalMessage": "Hôm đó có cơ hội thì qua chụp chung 1 tấm nha ng ae ^^",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "024",
+    "recipientName": "Khoa Từ",
+    "displayName": "Khoa Từ",
+    "personalMessage": "Hôm đó có cơ hội thì qua chụp chung 1 tấm nha ng ae ^^",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "025",
+    "recipientName": "Thiên Ngân",
+    "displayName": "Thiên Ngân",
+    "personalMessage": "Hehe lên lễ tn tui nhả vía cho tn lẹ lẹ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "026",
+    "recipientName": "Toàn",
+    "displayName": "Toàn",
+    "personalMessage": "Xún chụp ảnh lễ tn với t t chỉ cho mở quán :))))))",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "027",
+    "recipientName": "Jos",
+    "displayName": "Jos",
+    "personalMessage": "Lên chụp chung xin vía nè cu Jos",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "028",
+    "recipientName": "Khang",
+    "displayName": "Khang",
+    "personalMessage": "Lên chụp chung xin vía học giỏi nè cu",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "029",
+    "recipientName": "Phương Linh",
+    "displayName": "Phương Linh",
+    "personalMessage": "Hehe Plinh có cơ hội thì ghé chụp dới t 1 tấm nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "030",
+    "recipientName": "Tuấn Anh",
+    "displayName": "Tuấn Anh",
+    "personalMessage": "ae chí cốt cùng khổ =)))))",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "031",
+    "recipientName": "HDuyen",
+    "displayName": "HDuyen",
+    "personalMessage": "HDuyen bữa đó qua chụp dới tui 1 tấm nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "032",
+    "recipientName": "Phúc",
+    "displayName": "Phúc",
+    "personalMessage": "Qua đây chụp với t 1 tấm là dui r ^^",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "033",
+    "recipientName": "Phương Trâm",
+    "displayName": "Trâm",
+    "personalMessage": "PTram có rảnh thì xún chụp hình dới tui 1 tấm nha ^^",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "034",
+    "recipientName": "Phấn",
+    "displayName": "Phấn",
+    "personalMessage": "Tiktoker dẫn đoàn xún chụp hình chung dới tui nè",
+    "rsvpEnabled": true
   }
+
 ]

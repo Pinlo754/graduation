@@ -21,7 +21,7 @@ export default function NotFound() {
             Đường link này có vẻ chưa đúng hoặc đã bị cắt mất một phần. Bạn kiểm tra lại link đã nhận, hoặc nhắn cho người gửi để lấy link mới nhé.
           </p>
           <pre className="standalone__trace mono" aria-hidden="true">
-            {"  at openInvitation (invite/[id])\n  at hint: copy the full link from the message"}
+            {"  at openInvitation (invite/[slug])\n  at hint: copy the full link from the message"}
           </pre>
         </div>
       </main>

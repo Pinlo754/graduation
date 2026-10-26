@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/config/site";
-import { getDisplayName, getInvitation, invitations } from "@/lib/invitations";
+import { getDisplayName, getInvitationBySlug, invitationPath, invitations } from "@/lib/invitations";
 import { isRsvpConfigured } from "@/lib/rsvp";
 import { InvitationShell } from "@/components/InvitationShell";
 import { WelcomeSection } from "@/components/sections/WelcomeSection";
@@ -13,18 +13,18 @@ import { FinaleSection } from "@/components/sections/FinaleSection";
 import { PlaceholderBadge } from "@/components/PlaceholderBadge";
 
 interface InvitePageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
-/** Every guest page is pre-rendered at build time; unknown ids are a real 404. */
+/** Every guest page is pre-rendered at build time; unknown names are a real 404. */
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return invitations.map((invitation) => ({ id: invitation.id }));
+  return invitations.map((invitation) => ({ slug: invitation.slug }));
 }
 
 export async function generateMetadata({ params }: InvitePageProps): Promise<Metadata> {
-  const invitation = getInvitation((await params).id);
+  const invitation = getInvitationBySlug((await params).slug);
   if (!invitation) return { title: "Không tìm thấy thiệp mời", robots: { index: false } };
   const name = getDisplayName(invitation);
   const title = `${name} ơi, bạn được mời!`;
@@ -35,13 +35,13 @@ export async function generateMetadata({ params }: InvitePageProps): Promise<Met
     // Personal invitations should never show up in search results.
     robots: { index: false, follow: false },
     // Setting openGraph here replaces the root's, so re-attach the shared (name-free) preview image.
-    openGraph: { title, description, url: `/invite/${invitation.id}`, images: [{ url: "/opengraph-image", width: 1200, height: 630 }] },
+    openGraph: { title, description, url: invitationPath(invitation), images: [{ url: "/opengraph-image", width: 1200, height: 630 }] },
     twitter: { title, description, images: ["/opengraph-image"] },
   };
 }
 
 export default async function InvitePage({ params }: InvitePageProps) {
-  const invitation = getInvitation((await params).id);
+  const invitation = getInvitationBySlug((await params).slug);
   if (!invitation) notFound();
 
   const guest = {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { getDisplayName, invitations } from "@/lib/invitations";
+import { getDisplayName, invitationPath, invitations } from "@/lib/invitations";
 import { Backdrop } from "@/components/Backdrop";
 import { WaxSeal } from "@/components/WaxSeal";
 
@@ -24,7 +24,7 @@ export default function HomePage() {
           <p className="mono standalone__kicker">GET / → 401 Personal invitation required</p>
           <h1 className="standalone__title">Thiệp mời này là dành riêng cho bạn</h1>
           <p className="standalone__text">
-            Mỗi khách mời của {siteConfig.graduate.fullName} có một đường link riêng, dạng <code className="mono">/invite/…</code>. Hãy mở đúng link bạn đã nhận được qua
+            Mỗi khách mời của {siteConfig.graduate.fullName} có một đường link riêng, dạng <code className="mono">/invite/ten-cua-ban</code>. Hãy mở đúng link bạn đã nhận được qua
             tin nhắn nhé.
           </p>
           {isDev && (
@@ -33,8 +33,8 @@ export default function HomePage() {
               <ul>
                 {invitations.map((invitation) => (
                   <li key={invitation.id}>
-                    <Link href={`/invite/${invitation.id}`}>
-                      /invite/{invitation.id} — {getDisplayName(invitation)}
+                    <Link href={invitationPath(invitation)}>
+                      {invitationPath(invitation)} — {getDisplayName(invitation)}
                     </Link>
                   </li>
                 ))}

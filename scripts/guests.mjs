@@ -6,7 +6,7 @@
  *   npm run guests:export -- guests.csv  # write the guest list to a CSV (opens in Excel / Google Sheets)
  *   npm run guests:import -- guests.csv  # replace src/content/invitations.json with a CSV
  *
- * CSV columns: id, recipientName, displayName, personalMessage, rsvpEnabled
+ * CSV columns: id, recipientName, displayName, personalMessage, rsvpEnabled, slug (optional URL override)
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -14,8 +14,22 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dataFile = resolve(root, "src/content/invitations.json");
-const COLUMNS = ["id", "recipientName", "displayName", "personalMessage", "rsvpEnabled"];
+const COLUMNS = ["id", "recipientName", "displayName", "personalMessage", "rsvpEnabled", "slug"];
 const ID_PATTERN = /^[A-Za-z0-9_-]{1,40}$/;
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+/** Copy of slugify() in src/lib/slug.ts — keep the two in sync. */
+function slugify(input) {
+  return input
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[đĐ]/g, "d")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60)
+    .replace(/-+$/, "");
+}
 
 function loadEnvSiteUrl() {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
@@ -74,7 +88,7 @@ function links() {
   const base = loadEnvSiteUrl().replace(/\/+$/, "");
   for (const guest of readGuests()) {
     const name = guest.displayName || guest.recipientName;
-    console.log(`${guest.id}\t${name}\t${base}/invite/${guest.id}`);
+    console.log(`${guest.id}\t${name}\t${base}/invite/${guest.slug || slugify(guest.recipientName)}`);
   }
 }
 
@@ -96,6 +110,7 @@ function importCsv(file) {
     if (!(required in index)) throw new Error(`CSV is missing the "${required}" column`);
   }
   const seen = new Set();
+  const seenSlugs = new Map();
   const guests = rows.map((cells, n) => {
     const get = (col) => (col in index ? (cells[index[col]] ?? "").trim().normalize("NFC") : "");
     const id = get("id");
@@ -108,6 +123,11 @@ function importCsv(file) {
     const guest = { id, recipientName };
     if (get("displayName")) guest.displayName = get("displayName");
     if (get("personalMessage")) guest.personalMessage = get("personalMessage");
+    const slug = get("slug") || slugify(recipientName);
+    if (!SLUG_PATTERN.test(slug)) throw new Error(`Line ${line}: can't make a URL from "${recipientName}" — fill the slug column (e.g. "nguyen-van-a")`);
+    if (seenSlugs.has(slug)) throw new Error(`Line ${line}: URL /invite/${slug} is already used by "${seenSlugs.get(slug)}" — fill a different slug`);
+    seenSlugs.set(slug, recipientName);
+    if (get("slug")) guest.slug = slug;
     guest.rsvpEnabled = /^(true|1|yes|x|có)$/i.test(get("rsvpEnabled") || "true");
     return guest;
   });

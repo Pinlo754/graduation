@@ -1,29 +1,10 @@
-"use client";
+import { googleCalendarUrl, type CalendarEvent } from "@/lib/calendar";
 
-import { buildIcs, googleCalendarUrl, type CalendarEvent } from "@/lib/calendar";
-
-export function CalendarButtons({ event, uid }: { event: CalendarEvent; uid: string }) {
-  const downloadIcs = () => {
-    const blob = new Blob([buildIcs(event, uid)], { type: "text/calendar;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "le-tot-nghiep.ics";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-  };
-
+export function CalendarButtons({ event }: { event: CalendarEvent }) {
   return (
-    <>
-      <a className="btn btn--ghost" href={googleCalendarUrl(event)} target="_blank" rel="noopener noreferrer">
-        <CalendarIcon /> Google Calendar
-      </a>
-      <button type="button" className="btn btn--ghost" onClick={downloadIcs}>
-        <CalendarIcon /> Tải file .ics
-      </button>
-    </>
+    <a className="btn btn--ghost" href={googleCalendarUrl(event)} target="_blank" rel="noopener noreferrer">
+      <CalendarIcon /> Google Calendar
+    </a>
   );
 }
 

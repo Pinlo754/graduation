@@ -52,7 +52,7 @@ export function FinaleSection({ guest, config, rsvpOpen }: { guest: Guest; confi
           ) : (
             <div className="rsvp__offline">
               <p className="rsvp__title">Xác nhận tham dự</p>
-              <p>Nhắn trực tiếp cho mình để mình giữ chỗ cho {guest.name} nhé!</p>
+              <p>Nhắn trực tiếp cho mình để mình xếp thời gian cho {guest.name} nhé!!!</p>
             </div>
           )}
           {config.contacts.length > 0 && (
