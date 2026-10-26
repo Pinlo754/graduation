@@ -320,5 +320,33 @@
     "displayName": "Hoàng",
     "personalMessage": "kh có mặt thì quá dở hẹ",
     "rsvpEnabled": true
+  },
+  {
+    "id": "047",
+    "recipientName": "nguyên nhóm bg lun",
+    "displayName": "nguyên nhóm bg lun",
+    "personalMessage": "hehe ai đi được thì dui nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "048",
+    "recipientName": "c Meo",
+    "displayName": "c Meo",
+    "personalMessage": "hehe mời riêng c Meo lun nha",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "049",
+    "recipientName": "Anh Lâm",
+    "displayName": "Anh Lâm",
+    "personalMessage": "hehe anh Lâm có rảnh thì ghé chụp với em một tấm ảnh ạ",
+    "rsvpEnabled": true
+  },
+  {
+    "id": "050",
+    "recipientName": "Chị Ngọc",
+    "displayName": "Chị Ngọc",
+    "personalMessage": "hehe chị Ngọc có rảnh thì ghé chụp với em một tấm ảnh ạ",
+    "rsvpEnabled": true
   }
 ]
