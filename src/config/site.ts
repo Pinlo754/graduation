@@ -119,7 +119,7 @@ export const siteConfig: SiteConfig = {
 
   event: {
     title: "Lễ Tốt Nghiệp — FPT University",
-    startsAt: "2026-11-07T13:00:00+07:00", // ⚠️ PLACEHOLDER
+    startsAt: "2026-11-07T1:00:00+07:00", // ⚠️ PLACEHOLDER
     endsAt: "2026-12-20T16:00:00+07:00", // ⚠️ PLACEHOLDER
     venue: "Hội trường Đại học FPT", // ⚠️ PLACEHOLDER
     address: "7 Đ. D1, Tăng Nhơn Phú, Hồ Chí Minh 700000, Việt Nam", // ⚠️ PLACEHOLDER
