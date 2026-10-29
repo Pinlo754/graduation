@@ -8,7 +8,11 @@ export interface CalendarEvent {
 
 /** 20261220T010000Z — UTC basic format used by Google Calendar. */
 export function toUtcStamp(iso: string): string {
-  return new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) {
+    throw new Error(`Invalid date "${iso}" in src/config/site.ts — use YYYY-MM-DDTHH:mm:ss+07:00, e.g. "2026-11-07T10:00:00+07:00"`);
+  }
+  return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
 }
 
 function resolveEnd(event: CalendarEvent): string {
